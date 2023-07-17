@@ -5,4 +5,5 @@ Basic password generator that prompts user to enter the length of their generate
 
 # Upcoming Developments
 Check and validate user input
+
 Limit special characters to only most commonly accepted
