@@ -11,7 +11,7 @@ import sys
 
 ### Create a function that will accept an argument referencing the length of the password
 def generate_password(length):
-    accepted_specialchar = "!@#$%^&*_-+=<>?~"                                                 # Assign a custom string of commonly accepted special characters for passwords
+    accepted_specialchar = "!@#$%^&*_-+=<>?~"                                                       # Assign a custom string of commonly accepted special characters for passwords
     characters = string.ascii_letters + string.digits + accepted_specialchar                        
     password = ''.join(random.choice(characters) for i in range(length))                            # List expression is used here. For i in range of length, randomly choose an item from characters and join it to password, which starts off as ''
     return password
