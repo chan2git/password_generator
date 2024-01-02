@@ -1,9 +1,4 @@
-# password_generator
+# Password Generator 
+password_generator.py is a simple Python script designed to create a password string of a user-specified length through an input prompt. The script includes functionality for both exiting the program and handling potential user error input errors.
 
-# Description
-Basic password generator that prompts user to enter the length of their generated password.
 
-A randomly generated string from pre-defined letters, digits, and special characters is then returned.
-
-# Upcoming Developments
-TBD

@@ -1,40 +1,54 @@
-### Import the random, string, sys modules
-import random
 import string
+import random
 import sys
 
-### Create a function that will accept an argument referencing the length of the password
+# Creates a function that accepts an argument representing the length of the password
 def generate_password(length):
-    accepted_specialchar = "!@#$%^&*_-+=<>?~"                                                 # Assign a custom string of commonly accepted special characters for passwords
-    characters = string.ascii_letters + string.digits + accepted_specialchar                        
-    password = ''.join(random.choice(characters) for i in range(length))                            # List expression is used here. For i in range of length, randomly choose an item from characters and join it to password, which starts off as ''
+    # Creates a variable to hold commonly accepted special characters/punctuations for passwords
+    accepted_specialchar = "!@#$%^&*_-+=<>?~" 
+    
+    # Assigns characters from ascii_letters (all upper/lower), digits (all numbers), and `accepted_specialchar` into `characters`
+    # The reason string.printable is not used is due to inclusion of white space
+    characters = string.ascii_letters + string.digits + accepted_specialchar
+
+    # Uses a list comprehension to join a random character from `characters` each time i iterates within the range of `length`
+    password = "".join(random.choice(characters) for i in range(length))
+
+    # Returns the value for `password`
     return password
 
 
 
-### While condition is true, continue to prompt user for action
-while True:
-    user_length = input("Please enter the length of the generated password, or Q to quit: ")        # Prompts the user to enter the length of desired password
+run_flag = True
 
-    if user_length.isdigit() and int(user_length) > 0:                                              # Checks if the user input is a positive integer
-        user_length = int(user_length)                                                              # If conditions pass, officially convert user input to a int value and break the while loop
-        break      
-    elif user_length.upper() == "Q":                                                                # If user input is Q, exit this python script
-        print(". . . Quitting . . .")
-        sys.exit()                                                              
+# While `run_flag` is set to True, continue to prompt user
+while run_flag:
+    print("Enter how many characters you would like your generated password to have, or enter Q to quit")
+    # Takes user's input and store into `length`
+    length = input()
+
+    # Checks if `length` value is a positive integer
+    if length.isdigit() and int(length) > 0:
+        # Converts value for `length` from string to int type
+        length = int(length)
+
+        # Calls the generate_password function, passes in `length`, and stores the returned value into `password`
+        password = generate_password(length)
+
+        # Prints the value for `password`
+        print(f"Your generated password is: {password}")
+
+        # Sets `run_flag` to False which breaks the While loop
+        run_flag = False                     # Alternative: sys.exit()
+
+    # Checks if `length` value is equal to Q
+    elif length.upper() == "Q":
+        # Prints a statement indicating the script is quitting
+        print("...Quitting...")
+
+        # Sets `run_flag` to False which breaks the While loop
+        run_flag = False                     # Alternative: sys.exit()
+
+    # Accounts for other error conditions and restarts the loop block
     else:
-        print("Invalid input. Please enter a positive interger only.")
-
-
-password = generate_password(user_length)                                                           # Call the generate_password function to generate and return the password to the user
-print(f"Your generated password is: {password}")
-
-
-
-################################################ FOOTNOTES ################################################
-
-#############################
-# Version:    1.01          #
-# Date:       07/17/2023    #
-# Coder:      CH @chan2git  #
-#############################
+        print("Invalid input. Please enter a positive number or Q to quit")
